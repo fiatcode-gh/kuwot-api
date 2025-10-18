@@ -1,0 +1,48 @@
+import type { Request, Response } from 'express';
+import { getQuote, getRandomQuote, listTranslations } from './data/db.js';
+import { listRandomImages } from './data/unsplash.js';
+
+function onGetRandomQuote(_req: Request, res: Response): void {
+  try {
+    const quote = getRandomQuote();
+    res.status(200).send(quote);
+  } catch (error: any) {
+    res.status(500).send({ error: error.message });
+  }
+}
+
+function onGetQuoteById(req: Request, res: Response): void {
+  const idParam = req.params['id'];
+  if (!idParam) {
+    res.status(400).send({ error: 'Quote ID is required.' });
+    return;
+  }
+
+  try {
+    const id = parseInt(idParam);
+    const quote = getQuote(id);
+    res.status(200).send(quote);
+  } catch (error: any) {
+    res.status(500).send({ error: error.message });
+  }
+}
+
+function onGetTranslations(_req: Request, res: Response): void {
+  try {
+    const translations = listTranslations();
+    res.status(200).send(translations);
+  } catch (error: any) {
+    res.status(500).send({ error: error.message });
+  }
+}
+
+async function onGetImages(_req: Request, res: Response): Promise<void> {
+  try {
+    const images = await listRandomImages();
+    res.status(200).send(images);
+  } catch (error: any) {
+    res.status(500).send({ error: error.message });
+  }
+}
+
+export { onGetImages, onGetQuoteById, onGetRandomQuote, onGetTranslations };
