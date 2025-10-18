@@ -11,8 +11,6 @@
       ],
       "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
