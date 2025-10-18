@@ -22,8 +22,8 @@ function onGetQuoteById(req: Request, res: Response): void {
     const id = parseInt(idParam);
     const quote = getQuote(id);
     res.status(200).send(quote);
-  } catch (error: any) {
-    res.status(500).send({ error: error.message });
+  } catch (e) {
+    res.status(500).send({ error: (e as Error).message });
   }
 }
 
@@ -31,8 +31,8 @@ function onGetTranslations(_req: Request, res: Response): void {
   try {
     const translations = listTranslations();
     res.status(200).send(translations);
-  } catch (error: any) {
-    res.status(500).send({ error: error.message });
+  } catch (e) {
+    res.status(500).send({ error: (e as Error).message });
   }
 }
 
@@ -40,8 +40,8 @@ async function onGetImages(_req: Request, res: Response): Promise<void> {
   try {
     const images = await listRandomImages();
     res.status(200).send(images);
-  } catch (error: any) {
-    res.status(500).send({ error: error.message });
+  } catch (e) {
+    res.status(500).send({ error: (e as Error).message });
   }
 }
 

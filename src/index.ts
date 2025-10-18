@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import { bearerAuthMiddleware } from './authMiddleware.js';
 import {
   onGetImages,
   onGetQuoteById,
@@ -8,6 +9,8 @@ import {
 } from './routes.js';
 
 const app = express();
+
+app.use(bearerAuthMiddleware);
 
 app.get('/quotes/random', onGetRandomQuote);
 app.get('/quotes/:id', onGetQuoteById);
