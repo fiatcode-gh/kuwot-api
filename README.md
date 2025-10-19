@@ -22,6 +22,7 @@ npm install
    cp .env.example .env
    ```
 2. Set your Unsplash access key and other variables in `.env`.
+3. Download [`quotes.db`](https://drive.google.com/drive/folders/18b7Dvptf0xQ8qwXzGvCZ6qqwd7V0TPtv) and put it in the project root directory.
 
 ### Running the Server
 
