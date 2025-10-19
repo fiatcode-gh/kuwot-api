@@ -1,12 +1,3 @@
-export interface AuthPayload {
-  // An UUID string, unique per request.
-  token: string;
-
-  // Unix time in seconds. It is the time when the token was issued.
-  // Will expire after a time window.
-  issuedAt: number;
-}
-
 export interface Quote {
   id: number;
   text: string;
