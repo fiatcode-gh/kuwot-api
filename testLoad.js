@@ -1,5 +1,5 @@
-// Stress test script for Quote API
-// Usage: node stress-test.js
+// Stress test script for Kuwot API
+// Usage: node testLoad.js
 
 const ENDPOINTS = [
   'http://localhost:8080/quotes/random',
