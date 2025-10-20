@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { getQuote, getRandomQuote, listTranslations } from './data/db.js';
+import { getQuote, getRandomQuote, listTranslations } from './data/quote.js';
 import { listRandomImages } from './data/unsplash.js';
 
 function onGetRandomQuote(_req: Request, res: Response): void {

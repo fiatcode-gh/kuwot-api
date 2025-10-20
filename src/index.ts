@@ -10,6 +10,10 @@ import {
 
 const app = express();
 
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 const hourlyLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 1000,
@@ -35,7 +39,6 @@ app.get('/quotes/:id', onGetQuoteById);
 app.get('/translations', onGetTranslations);
 app.get('/images', onGetImages);
 
-const port = process.env.PORT ? Number(process.env.PORT) : 8080;
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(8080, () => {
+  console.log(`Server is running on http://localhost:8080`);
 });

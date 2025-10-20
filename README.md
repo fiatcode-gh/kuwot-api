@@ -41,26 +41,6 @@ npm run format
 - ESLint
 - Prettier
 
-## Project Structure
-
-```
-kuwot-api-js/
-├── src/
-│   ├── index.ts         # Entry point
-│   ├── routes.ts        # API routes
-│   ├── types.d.ts       # Type definitions
-│   └── data/
-│       ├── db.ts        # Database logic
-│       └── unsplash.ts  # Unsplash API integration
-├── .env.example         # Example environment variables
-├── .gitignore           # Git ignore rules
-├── package.json         # Project metadata and scripts
-├── tsconfig.json        # TypeScript configuration
-└── .vscode/
-    ├── launch.json      # Debug configuration
-    └── extensions.json  # Recommended extensions
-```
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
