@@ -4,22 +4,34 @@ import type { Quote, Translation } from '../types.js';
 const MAX_QUOTE_ID = 250000;
 const db = new DatabaseSync('quotes.db');
 
-function getRandomQuote(tableName: string = 'quotes'): Quote {
+function getTableNameForLang(langId: string) {
+  const translationRow = db
+    .prepare(`SELECT table_name FROM translations WHERE id = ?`)
+    .get(langId);
+  if (!translationRow) {
+    throw new Error(`Translation with id ${langId} not found.`);
+  }
+  return translationRow['table_name'] as string;
+}
+
+function getRandomQuote(langId: string): Quote {
   const randomId = Math.floor(Math.random() * MAX_QUOTE_ID) + 1;
-  const row = db
+  const tableName = getTableNameForLang(langId);
+  const quoteRow = db
     .prepare(`SELECT * FROM ${tableName} WHERE id = ?`)
     .get(randomId);
-  if (!row) {
+  if (!quoteRow) {
     throw new Error(`Quote with id ${randomId} not found.`);
   }
   return {
-    id: row['id'] as number,
-    text: row['quote'] as string,
-    author: row['author'] as string,
+    id: quoteRow['id'] as number,
+    text: quoteRow['quote'] as string,
+    author: quoteRow['author'] as string,
   };
 }
 
-function getQuote(id: number, tableName: string = 'quotes'): Quote {
+function getQuote(id: number, langId: string): Quote {
+  const tableName = getTableNameForLang(langId);
   const row = db.prepare(`SELECT * FROM ${tableName} WHERE id = ?`).get(id);
   if (!row) {
     throw new Error(`Quote with id ${id} not found.`);
