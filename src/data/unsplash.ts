@@ -20,7 +20,7 @@ async function listRandomImages(count: number = 10): Promise<UnsplashImage[]> {
         originUrl: buildUtmUrl(img.links.html),
         authorName: img.user.name,
         authorBio: img.user.bio ?? 'No bio',
-        authorLocation: img.user.location,
+        authorLocation: img.user.location ?? 'Unknown',
         authorTotalLikes: img.user.total_likes,
         authorTotalPhotos: img.user.total_photos,
         authorIsForHire: img.user.for_hire,
