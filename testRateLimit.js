@@ -1,3 +1,6 @@
+// Rate Limit test script for Kuwot API
+// Usage: node testRateLimit.js
+
 async function testRateLimit() {
   const url = 'http://localhost:8080/quotes/random';
 
