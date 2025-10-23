@@ -13,6 +13,7 @@ const app = express();
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
+app.use(express.static('public'));
 
 const hourlyLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
