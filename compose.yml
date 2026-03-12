@@ -2,8 +2,6 @@ services:
   quote-api:
     build: .
     restart: unless-stopped
-    ports:
-      - '8080:8080'
     env_file:
       - .env
     volumes:
@@ -27,3 +25,16 @@ services:
       options:
         max-size: '10m'
         max-file: '3'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kuwot-api.rule=Host(`api.dhemasnurjaya.com`) && PathPrefix(`/kuwot/v1`)"
+      - "traefik.http.routers.kuwot-api.entrypoints=web-secure"
+      - "traefik.http.routers.kuwot-api.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.kuwot-api.middlewares=strip-prefix@file"
+      - "traefik.http.services.kuwot-api.loadbalancer.server.port=8080"
+    networks:
+      - traefik-proxy
+
+networks:
+  traefik-proxy:
+    external: true
