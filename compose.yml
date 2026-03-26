@@ -27,7 +27,7 @@ services:
         max-file: '3'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kuwot-api.rule=Host(`api.dhemasnurjaya.com`) && PathPrefix(`/kuwot/v1`)"
+      - "traefik.http.routers.kuwot-api.rule=Host(`api.fiatcode.dev`) && PathPrefix(`/kuwot/v1`)"
       - "traefik.http.routers.kuwot-api.entrypoints=web-secure"
       - "traefik.http.routers.kuwot-api.tls.certresolver=defaultResolver"
       - "traefik.http.routers.kuwot-api.middlewares=strip-prefix@file"
