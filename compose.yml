@@ -1,6 +1,7 @@
 services:
-  quote-api:
+  kuwot-api:
     build: .
+    container_name: kuwot-api
     restart: unless-stopped
     env_file:
       - .env
