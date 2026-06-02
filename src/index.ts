@@ -10,6 +10,12 @@ import {
 
 const app = express();
 
+// Behind a single Traefik reverse proxy: trust exactly one hop so
+// express-rate-limit keys on the real client IP (X-Forwarded-For).
+// Using `true` would trust the whole chain and let clients spoof the
+// header to bypass the limiter.
+app.set('trust proxy', 1);
+
 app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
